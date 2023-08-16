@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="CustomBottomNavigationView" parent="Widget.Design.BottomNavigationView">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:outlineSpotShadowColor" tools:ignore="NewApi">@android:color/transparent</item>
+        <item name="android:outlineAmbientShadowColor" tools:ignore="NewApi">@android:color/transparent</item>
+    </style>
+
+    <style name="BottomNavigationView_Active">
+        <item name="android:textSize">18sp</item> <!-- Ukuran font untuk menu aktif -->
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="BottomNavigationView_Inactive">
+        <item name="android:textSize">18sp</item> <!-- Ukuran font untuk menu tidak aktif -->
+    </style>
+</resources>

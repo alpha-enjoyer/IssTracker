@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaflet Map</title>
+    <!-- Load stylesheet for Leaflet.js -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        /* Set the height of the map container */
+        body {
+            margin:0;
+            background-color:rgba(0,0,0,0);
+        }
+        #map {
+            height: 400px;
+            border-radius:20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Create a container for the map -->
+    <div id="map"></div>
+
+    <!-- Load Leaflet.js library -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        var map;
+        function setKoordinat(latitude, longitude) {
+            if(map !== undefined) {
+                map.remove();
+            }
+            // Initialize the map
+            map = L.map('map', {
+                center:[latitude,longitude],
+                zoom:2,
+                continuousWorld:false,
+                noWrap:true
+            });
+
+            // Add a tile layer (e.g., OpenStreetMap)
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom:5,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                continuousWorld:false,
+                noWrap:true
+            }).addTo(map);
+
+
+            //ISS icon
+            var issIcon = L.icon({
+                iconUrl:'file:///android_res/drawable/logo.png',
+                iconSize:[32,32],
+                iconAnchor:[16,16]
+            });
+
+            // Add a marker to the map
+            var userMarker = L.marker([37.7749, 122.4194]).addTo(map)
+                .bindPopup('Lokasi Anda')
+                .openPopup();
+
+            var issMarker = L.marker([latitude, longitude],{icon:issIcon}).addTo(map)
+                .bindPopup('Lokasi ISS')
+                .openPopup();
+
+            var linePoints = [userMarker.getLatLng(), issMarker.getLatLng()];
+            var polyline = L.polyline(linePoints, { color: 'blue' }).addTo(map);
+
+        }
+
+    </script>
+
+
+</body>
+</html>
